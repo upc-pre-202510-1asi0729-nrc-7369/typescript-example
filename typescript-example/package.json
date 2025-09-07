@@ -25,10 +25,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/upc-pre-202520-1asi0729-sandbox/typescript-review.git"
+    "url": "https://github.com/upc-pre-202510-1asi0729-nrc-7369/typescript-example.git"
   },
   "bugs": {
-    "url": "https://github.com/upc-pre-202520-1asi0729-sandbox/typescript-review/issues"
+    "url": "https://github.com/upc-pre-202510-1asi0729-nrc-7369/typescript-example/issues"
   },
-  "homepage": "https://github.com/upc-pre-202520-1asi0729-sandbox/typescript-review#readme"
+  "homepage": "https://github.com/upc-pre-202510-1asi0729-nrc-7369/typescript-example/blob/main/typescript-example/README.md"
 }
