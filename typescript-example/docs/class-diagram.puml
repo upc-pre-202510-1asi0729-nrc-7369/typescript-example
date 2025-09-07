@@ -1,0 +1,82 @@
+@startuml
+package "shared.domain.model" {
+    class Currency {
+        - _code: CurrencyCode
+        + code: string
+        + formatAmount(amount: number, locale: string): string
+        + toString(): string
+    }
+
+    class Money {
+        - _amount: number
+        - _currency: Currency
+        + amount: number
+        + currency: Currency
+        + add(money: Money): Money
+        + multiply(factor: number): Money
+        + toString(): string
+    }
+
+    class DateTime {
+        - _date: Date
+        + value: Date
+        + format(): string
+        + toString(): string
+    }
+}
+
+package "crm.domain.model" {
+    class Customer {
+        - id: string
+        - name: string
+        - email: string
+        + getId(): string
+        + getName(): string
+        + getEmail(): string
+    }
+}
+
+package "sales.domain.model" {
+
+    class ProductId {
+        - id: string
+        + id: string
+    }
+
+    class SalesOrderItem {
+        - _productId: ProductId
+        - _quantity: number
+        - _unitPrice: Money
+        + _productId: ProductId
+        + quantity: number
+        + unitPrice: Money
+        + quantity: number
+        + calculateItemTotal(): Money
+    }
+
+    class SalesOrder {
+        - _id: string
+        - _customerId: CustomerId
+        - _items: SalesOrderItem[]
+        - _orderedAt: DateTime
+        - _state: SalesOrderState
+        + id: string
+        + customerId: Customer
+        + items: SalesOrderItem[]
+        + orderedAt: DateTime
+        + state: SalesOrderState
+        + addItem(productId: ProductId, quantity: number, unitPriceAmount: number): void
+        + calculateTotalAmount(): Money
+        + confirm(): void
+        + cancel(): void
+        + ship(): void
+    }
+}
+
+Customer "1" o-- "0..*" SalesOrder
+SalesOrder "1" *-- "1..*" SalesOrderItem
+SalesOrderItem "1" -- "1" ProductId
+SalesOrderItem "1" -- "1" Money
+Money "1" -- "1" Currency
+SalesOrder "1" -- "1" DateTime
+@enduml
